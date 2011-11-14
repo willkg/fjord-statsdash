@@ -124,37 +124,29 @@ $(function() {
     initialize: function() {
       var self = this;
 
+      _.bindAll(this, 'render', 'addOne', 'addAll');
+
       // Time selector
       this.timeView = new TimeView();
-      this.timeView.bind('change', this.render, this);
+      this.timeView.bind('change', this.render);
 
       // Legend Toggle
       this.legendToggle = new LegendToggle();
-      this.legendToggle.bind('change', this.render, this);
+      this.legendToggle.bind('change', this.render);
 
       // The graphs
-      this.model.bind('add', this.addOne, this);
-      this.model.bind('reset', this.addAll, this);
-      this.model.bind('all', this.render, this);
+      this.model.bind('add', this.addOne);
+      this.model.bind('reset', this.addAll);
       this.model.fetch();
-      if (!this.model.length) {
-        _.each(cfg.defaultGraphs[SITE_ID], function(g) {
-          self.model.create(g);
-        });
-      }
-
-      function render() {
-        self.render.apply(self);
-      }
 
       // Repaint every 15 seconds
-      setInterval(render, 15000);
+      setInterval(self.render, 15000);
 
       // Repaint on window resize
       var timer = false;
       $(window).resize(function() {
         clearTimeout(timer);
-        timer = setTimeout(render, 1000);
+        timer = setTimeout(self.render, 1000);
       });
 
       $('#refresh').click(function(e) {
@@ -168,14 +160,14 @@ $(function() {
           case 76: // l
             cfg.globalGraphOptions.hideLegend = !cfg.globalGraphOptions.hideLegend;
           case 82: // r
-            App.render();
+            self.render();
             break;
           case 72: // h
             $('legend').toggleClass("show");
             e.preventDefault();
             break;
           case 221:
-            App.render();
+            self.render();
             break;
         }
       });
@@ -185,12 +177,19 @@ $(function() {
       this.el.append(view.render().el);
     },
     addAll: function() {
+      var self = this;
+      if (!self.model.length) {
+        _.each(cfg.defaultGraphs[SITE_ID], function(g) {
+          self.model.create(g);
+        });
+      }
       this.model.each(this.addOne, this);
     },
     render: function() {
       this.model.each(function(g) {
         g.view.updateImage();
       });
+      return this;
     }
   });
 
