@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>how's it hanging?</title>
+  <title>ES Stats Dashboard</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -14,7 +14,7 @@
   <div class="topbar" >
     <div class="topbar-inner">
       <div class="container">
-        <a class="brand" href="#">statsdash</a>
+        <a class="brand" href="#">es statsdash</a>
         <form class="pull-right">
           <label for="show_legend"><input id="show_legend" type="checkbox"> show legends</label>
           <select id="from-select">
@@ -24,6 +24,7 @@
             <option>-30day</option>
           </select>
           <input type="button" id="refresh" value="refresh">
+          <a href='javascript:(function(){function%20l(a,b){b=a.target,a.preventDefault();var%20d=b.getAttribute("data-k");switch(b.className){case"lc":h.removeItem(d),k();break;case"lv":b.parentNode.innerHTML="<pre>"+h[d]+"</pre>";break;case"lca":h.clear(),k();break;case"sc":i.removeItem(d),k();break;case"sv":b.parentNode.innerHTML="<pre>"+i[d]+"</pre>";break;case"sca":i.clear(),k();break;case"x":c.style.display="none"}}function%20k(){e=j+"<tr><th%20colspan=3><h1>localStorage%20inspector</h1><th><a%20href=#%20class=x>close</a><tr><th>storage%20key<th>size<th><th><a%20href=#%20class=lca>clear%20all</a>",e+=h.length?"":"<tr><td>No%20Data";for(d=0;d<h.length;d++)g=h.key(d),e+=("<tr><td>$<td>"+h[g].length+"<td><a%20href=#%20data-k=\"$\"%20class=lv>view</a><td><a%20href=#%20data-k=\"$\"%20class=lc>clear</a>").replace(/\$/g,g);e+="<tr><th%20colspan=3><h1>sessionStorage</h1><tr><th>storage%20key<th>size<th><th><a%20href=#%20class=sca>clear%20all</a>",e+=i.length?"":"<tr><td>No%20Data";for(d=0;d<i.length;d++)g=i.key(d),e+=("<tr><td>$<td>"+i[g].length+"<td><a%20href=#%20data-k=\"$\"%20class=sv>view</a><td><a%20href=#%20data-k=\"$\"%20class=sc>clear</a>").replace(/\$/g,g);c.innerHTML=e}var%20a=document,b="localStorageList",c=a.getElementById(b),d,e,f,g,h=window.localStorage,i=window.sessionStorage,j="<style>$%20th,%20$%20td%20{padding:0%201em;text-align:left;}$%20th{font-weight:bold}$%20pre{max-width:400px;max-height:300px;overflow:auto;white-space:pre-wrap;}$%20h1{font:16px/32px%20sans-serif;}</style>".replace(/\$/g,"#"+b);c||(c=a.createElement("table"),a.body.appendChild(c),c.addEventListener("click",l,!1)),c.setAttribute("id",b),c.setAttribute("style","position:fixed;top:20px;right:20px;padding:20px;background:#fff;font:12px/20px%20monospace;z-index:99999;max-height:100%;overflow:auto;border-radius:10px;border:2px%20solid%20#000"),c.style.display="block",k()})()'>clear</a>
         </form>
       </div>
     </div>

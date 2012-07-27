@@ -9,46 +9,30 @@ $(function() {
       from: '-24hour'
     },
     defaultGraphs: {
-      'SUMO': [
+      'SUMOES': [
+        {
+          target: ['stats.timers.sumo.view.search.views.search.GET.upper_90',
+                   'stats.timers.sumo.view.search.views.search.GET.mean'],
+          title: 'search view response'
+        },
+        {
+          target: ['stats.sumo.search.tasks.index_task.forums_thread',
+                   'stats.sumo.search.tasks.index_task.wiki_document',
+                   'stats.sumo.search.tasks.index_task.questions_question',
+                   'stats.sumo.search.tasks.unindex_task.forums_thread',
+                   'stats.sumo.search.tasks.unindex_task.wiki_document',
+                   'stats.sumo.search.tasks.unindex_task.questions_question'],
+          title: 'index and unindex counts'
+        },
+        {
+          target: ['stats.sumo.search.esunified.elasticsearchexception',
+                   'stats.sumo.search.esunified.maxretryerror',
+                   'stats.sumo.search.esunified.timeouterror'],
+          title: 'ES errors'
+        },
         {
           target: ['sumSeries(stats.sumo.response.*)'],
-          title: 'all responses'
-        },
-        {
-          target: ['stats.timers.sumo.view.questions.views.questions.GET.mean'],
-          title: '/questions mean time'
-        },
-        {
-          target: ['stats.timers.sumo.view.landings.views.home.GET.mean'],
-          title: '/home mean time'
-        },
-        {
-          target: ['stats.sumo.questions.new',
-                   'stats.sumo.questions.answer'],
-          title: 'support forum activity'
-        }
-      ],
-      'AMO': [
-        {
-          target: ['sumSeries(stats.addons.response.*)'],
-          title: 'all responses'
-        },
-        {
-          target: ['stats.timers.addons.view.addons.views.home.GET.lower',
-                   'stats.timers.addons.view.addons.views.home.GET.mean',
-                   'stats.timers.addons.view.addons.views.home.GET.upper_90'],
-          title: 'homepage performance'
-        },
-        {
-          target: ['stats.addons.response.500',
-                   'stats.addons.response.4*'],
-          title: 'errors'
-        },
-        {
-          target: ['sumSeries(addons.celery.tasks.pending.*.*.*)',
-                   'derivative(sumSeries(addons.celery.tasks.total.*.*.*))',
-                   'derivative(sumSeries(addons.celery.tasks.failed.*.*.*))'],
-          title: 'celery queues'
+          title: 'search view response'
         }
       ]
     }

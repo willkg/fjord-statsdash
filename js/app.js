@@ -5,7 +5,7 @@ $(function() {
   // TODO: Config model
   var cfg = window.AppConfig;
 
-  var SITE_ID = 'AMO';
+  var SITE_ID = 'SUMOES';
 
   /* 
    * Graph Model
