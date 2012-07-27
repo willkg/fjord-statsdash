@@ -25,14 +25,12 @@ $(function() {
           title: 'index and unindex counts'
         },
         {
-          target: ['stats.sumo.search.esunified.elasticsearchexception',
-                   'stats.sumo.search.esunified.maxretryerror',
-                   'stats.sumo.search.esunified.timeouterror'],
-          title: 'ES errors'
+          target: ['sumSeries(stats.sumo.response.*)'],
+          title: 'all responses'
         },
         {
-          target: ['sumSeries(stats.sumo.response.*)'],
-          title: 'search view response'
+          target: ['stats.timers.sumo.view.landings.views.home.GET.mean'],
+          title: 'home mean time'
         }
       ]
     }
