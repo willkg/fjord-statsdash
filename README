@@ -1,1 +1,23 @@
-https://willkg.github.com/statsdash/
+========
+ README
+========
+
+This is the Input dashboard. It is built by eight-legged turtles that
+live at the bottom of the ocean.
+
+URL: http://people.mozilla.org/~wkahngreene/input-dashboard/
+
+Want your own dashboard?
+
+1. Fork this.
+
+2. Stick it in your own branch or whatever.
+
+3. Change ``statsdash/js/app.config.js`` to values that mean something
+   to you.
+
+4. Make other changes.
+
+5. Push this static site somewhere you will find it.
+
+6. Navigate to that place with your web-browser.
