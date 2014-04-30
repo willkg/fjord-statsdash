@@ -1,39 +1,54 @@
 $(function() {
+    "use strict";
 
-  "use strict";
-
-  window.AppConfig = {
-    srcBase: 'https://graphite-phx1.mozilla.org/render/?',
-    globalGraphOptions: {
-      hideLegend: false,
-      from: '-24hour'
-    },
-    defaultGraphs: {
-      'SUMOES': [
-        {
-          target: ['stats.timers.sumo.view.search.views.search.GET.upper_90',
-                   'stats.timers.sumo.view.search.views.search.GET.mean'],
-          title: 'search view response'
+    window.AppConfig = {
+        srcBase: 'https://graphite-phx1.mozilla.org/render/?',
+        globalGraphOptions: {
+            hideLegend: false,
+            from: '-7day'
         },
-        {
-          target: ['stats.sumo.search.tasks.index_task.forums_thread',
-                   'stats.sumo.search.tasks.index_task.wiki_document',
-                   'stats.sumo.search.tasks.index_task.questions_question',
-                   'stats.sumo.search.tasks.unindex_task.forums_thread',
-                   'stats.sumo.search.tasks.unindex_task.wiki_document',
-                   'stats.sumo.search.tasks.unindex_task.questions_question'],
-          title: 'index and unindex counts'
-        },
-        {
-          target: ['sumSeries(stats.sumo.response.*)'],
-          title: 'all responses'
-        },
-        {
-          target: ['stats.timers.sumo.view.landings.views.home.GET.mean'],
-          title: 'home mean time'
+        defaultGraphs: {
+            'input': [
+                {
+                    title: 'Total HTTP responses and breakdown',
+                    target: [
+                        'sumSeries(stats.input-prod.responses.*)',
+                        'stats.input-prod.response.200',
+                        'stats.input-prod.response.201',
+                        'stats.input-prod.response.301',
+                        'stats.input-prod.response.302',
+                        'stats.input-prod.response.400',
+                        'stats.input-prod.response.403',
+                        'stats.input-prod.response.404',
+                        'stats.input-prod.response.405',
+                        'stats.input-prod.response.500',
+                        'stats.input-prod.response.503'
+                    ]
+                },
+                {
+                    title: 'connection counts',
+                    target: [
+                        'hosts.input1_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count',
+                        'hosts.input2_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count',
+                        'hosts.input3_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count'
+                    ]
+                },
+                {
+                    title: 'throttling',
+                    target: [
+                        'stats.input-prod.throttled.doublesubmit_1pm',
+                        'stats.input-prod.throttled.100ph'
+                    ]
+                },
+                {
+                    title: 'sentiment',
+                    target: [
+                        'sumSeries(stats.input-prod.sentiment.*)',
+                        'stats.input-prod.sentiment.happy',
+                        'stats.input-prod.sentiment.sad'
+                    ]
+                }
+            ]
         }
-      ]
-    }
-  };
-
+    };
 });
