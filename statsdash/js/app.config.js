@@ -12,7 +12,6 @@ $(function() {
                 {
                     title: 'Total HTTP responses and breakdown',
                     target: [
-                        'sumSeries(stats.input-prod.responses.*)',
                         'stats.input-prod.response.200',
                         'stats.input-prod.response.201',
                         'stats.input-prod.response.301',
@@ -43,9 +42,9 @@ $(function() {
                 {
                     title: 'sentiment',
                     target: [
-                        'sumSeries(stats.input-prod.sentiment.*)',
-                        'stats.input-prod.sentiment.happy',
-                        'stats.input-prod.sentiment.sad'
+                        'sumSeries(stats.input-prod.feedback.*)',
+                        'stats.input-prod.feedback.happy',
+                        'stats.input-prod.feedback.sad'
                     ]
                 }
             ]
