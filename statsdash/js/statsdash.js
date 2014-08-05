@@ -4,19 +4,34 @@
     var graphiteURL = 'https://graphite-phx1.mozilla.org/render/';
 
     var graphiteOptions = {
-        height: '400',
-        width: '550',
-        from: '-12hour',
-        hideLegend: 'false'
+        'lg': {
+            height: '400',
+            width: '550',
+            from: '-12hour',
+            hideLegend: 'false'
+        },
+        'sm': {
+            height: '200',
+            width: '300',
+            from: '-12hour',
+            hideLegend: 'false'
+        }
     };
 
     function refreshGraphite() {
         var items = $('.graphite');
-        var extra = $.param(graphiteOptions) + '&t=' + (new Date()).getTime();
 
         $.each(items, function(index, value) {
             var linesToShow = $(value).data('lines');
             var lines = '';
+            var extra = null;
+
+            if ($(value).hasClass('graphite-lg')) {
+                extra = graphiteOptions.lg;
+            } else {
+                extra = graphiteOptions.sm;
+            }
+            extra = $.param(extra) + '&t=' + (new Date()).getTime();
 
             $.each(linesToShow, function(index, line) {
                 lines = lines + 'target=' + line + '&';

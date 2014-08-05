@@ -36,7 +36,7 @@
     <div id="content-body">
       <div id="torso">
         <div> <!-- connections -->
-          <img class="img-responsive graphite" data-lines='[
+          <img class="img-responsive graphite graphite-lg" data-lines='[
                "stats.input-prod.response.200",
                "stats.input-prod.response.302",
                "stats.input-prod.response.400",
@@ -48,7 +48,7 @@
         </div>
 
         <div> <!-- server connection counts -->
-          <img class="img-responsive graphite" data-lines='[
+          <img class="img-responsive graphite graphite-lg" data-lines='[
                "hosts.input1_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count",
                "hosts.input2_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count",
                "hosts.input3_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count"
@@ -56,14 +56,14 @@
         </div>
 
         <div> <!-- throttling -->
-          <img class="img-responsive graphite" data-lines='[
+          <img class="img-responsive graphite graphite-lg" data-lines='[
                "stats.input-prod.throttled.doublesubmit_1pm",
                "stats.input-prod.throttled.100ph"
                ]'>
         </div>
 
         <div> <!-- sentiment -->
-          <img class="img-responsive graphite" data-lines='[
+          <img class="img-responsive graphite graphite-lg" data-lines='[
                "sumSeries(stats.input-prod.feedback.*)",
                "stats.input-prod.feedback.happy",
                "stats.input-prod.feedback.sad"
@@ -77,26 +77,44 @@
           <div class='col-lg-4'>
             <h2 class='trunk-title'>Good Connections (Graphite)</h2>
           </div>
-          <div class='col-lg-8'>
-            <img class="img-responsive graphite" data-lines='[
-                 "stats.input-prod.response.200",
-                 "stats.input-prod.response.201",
+          <div class='col-lg-4'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.200"
+                 ]'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
                  "stats.input-prod.response.302"
+                 ]'>
+          </div>
+          <div class='col-lg-4'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.201"
                  ]'>
           </div>
         </div>
 
-        <div class='row trunk-section'>
-          <div class='col-lg-4'>
-            <h2 class='trunk-title'>Bad Connections (Graphite)</h2>
+        <div class="row trunk-section">
+          <div class="col-lg-4">
+            <h2 class="trunk-title">Bad Connections (Graphite)</h2>
           </div>
-          <div class='col-lg-8'>
-            <img class="img-responsive graphite" data-lines='[
-                 "stats.input-prod.response.400",
-                 "stats.input-prod.response.403",
-                 "stats.input-prod.response.404",
-                 "stats.input-prod.response.429",
-                 "stats.input-prod.response.500",
+          <div class="col-lg-4">
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.400"
+                 ]'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.404"
+                 ]'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.500"
+                 ]'>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.403"
+                 ]'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
+                 "stats.input-prod.response.429"
+                 ]'>
+            <img class="img-responsive graphite graphite-sm" data-lines='[
                  "stats.input-prod.response.503"
                  ]'>
           </div>
