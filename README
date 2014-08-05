@@ -13,8 +13,8 @@ Want your own dashboard?
 
 2. Stick it in your own branch or whatever.
 
-3. Change ``statsdash/js/app.config.js`` to values that mean something
-   to you.
+3. Go through ``statsdash/input.html`` and change the Graphite things
+   you want to see.
 
 4. Make other changes.
 
