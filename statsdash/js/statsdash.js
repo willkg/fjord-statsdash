@@ -47,4 +47,6 @@
     };
     window.onfocus = function() { runIntervals(); };
 
+    refreshGraphite();
+
 }(jQuery, window));
