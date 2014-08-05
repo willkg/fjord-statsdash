@@ -1,61 +1,114 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Input statsdash</title>
   <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <title>Input statsdash 2</title>
+
+  <link rel="stylesheet" type="text/css" href="css/bootstrap-3.2.0.min.css" />
+  <link rel="stylesheet" type="text/css" href="css/metrics-graphics.css" />
+  <link rel="stylesheet" type="text/css" href="css/statsdash.css" />
 </head>
 <body>
 
-  <!-- Topbar
-  ================================================== -->
-  <div class="topbar" >
-    <div class="topbar-inner">
-      <div class="container">
-        <a class="brand" href="#">Input statsdash</a>
-        <form class="pull-right">
-          <label for="show_legend"><input id="show_legend" type="checkbox"> show legends</label>
-          <select id="from-select">
-            <option>-1hour</option>
-            <option>-24hour</option>
-            <option>-7day</option>
-            <option>-30day</option>
-          </select>
-          <input type="button" id="refresh" value="refresh">
-          <a href='javascript:(function(){function%20l(a,b){b=a.target,a.preventDefault();var%20d=b.getAttribute("data-k");switch(b.className){case"lc":h.removeItem(d),k();break;case"lv":b.parentNode.innerHTML="<pre>"+h[d]+"</pre>";break;case"lca":h.clear(),k();break;case"sc":i.removeItem(d),k();break;case"sv":b.parentNode.innerHTML="<pre>"+i[d]+"</pre>";break;case"sca":i.clear(),k();break;case"x":c.style.display="none"}}function%20k(){e=j+"<tr><th%20colspan=3><h1>localStorage%20inspector</h1><th><a%20href=#%20class=x>close</a><tr><th>storage%20key<th>size<th><th><a%20href=#%20class=lca>clear%20all</a>",e+=h.length?"":"<tr><td>No%20Data";for(d=0;d<h.length;d++)g=h.key(d),e+=("<tr><td>$<td>"+h[g].length+"<td><a%20href=#%20data-k=\"$\"%20class=lv>view</a><td><a%20href=#%20data-k=\"$\"%20class=lc>clear</a>").replace(/\$/g,g);e+="<tr><th%20colspan=3><h1>sessionStorage</h1><tr><th>storage%20key<th>size<th><th><a%20href=#%20class=sca>clear%20all</a>",e+=i.length?"":"<tr><td>No%20Data";for(d=0;d<i.length;d++)g=i.key(d),e+=("<tr><td>$<td>"+i[g].length+"<td><a%20href=#%20data-k=\"$\"%20class=sv>view</a><td><a%20href=#%20data-k=\"$\"%20class=sc>clear</a>").replace(/\$/g,g);c.innerHTML=e}var%20a=document,b="localStorageList",c=a.getElementById(b),d,e,f,g,h=window.localStorage,i=window.sessionStorage,j="<style>$%20th,%20$%20td%20{padding:0%201em;text-align:left;}$%20th{font-weight:bold}$%20pre{max-width:400px;max-height:300px;overflow:auto;white-space:pre-wrap;}$%20h1{font:16px/32px%20sans-serif;}</style>".replace(/\$/g,"#"+b);c||(c=a.createElement("table"),a.body.appendChild(c),c.addEventListener("click",l,!1)),c.setAttribute("id",b),c.setAttribute("style","position:fixed;top:20px;right:20px;padding:20px;background:#fff;font:12px/20px%20monospace;z-index:99999;max-height:100%;overflow:auto;border-radius:10px;border:2px%20solid%20#000"),c.style.display="block",k()})()'>clear</a>
-        </form>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <span class="navbar-brand">Input dashboard</span>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li><a href="https://input.mozilla.org/">Input</a></li>
+          <li><a href="https://input.mozilla.org/admin/">Input Admin</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+
+  <div id="container" class="container">
+    <div id="content-body">
+      <div id="torso">
+        <div> <!-- connections -->
+          <img class="img-responsive graphite" data-lines='[
+               "stats.input-prod.response.200",
+               "stats.input-prod.response.302",
+               "stats.input-prod.response.400",
+               "stats.input-prod.response.403",
+               "stats.input-prod.response.404",
+               "stats.input-prod.response.429",
+               "stats.input-prod.response.500"
+               ]'>
+        </div>
+
+        <div> <!-- server connection counts -->
+          <img class="img-responsive graphite" data-lines='[
+               "hosts.input1_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count",
+               "hosts.input2_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count",
+               "hosts.input3_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count"
+               ]'>
+        </div>
+
+        <div> <!-- throttling -->
+          <img class="img-responsive graphite" data-lines='[
+               "stats.input-prod.throttled.doublesubmit_1pm",
+               "stats.input-prod.throttled.100ph"
+               ]'>
+        </div>
+
+        <div> <!-- sentiment -->
+          <img class="img-responsive graphite" data-lines='[
+               "sumSeries(stats.input-prod.feedback.*)",
+               "stats.input-prod.feedback.happy",
+               "stats.input-prod.feedback.sad"
+               ]'>
+        </div>
+      </div>
+
+
+      <div id='trunk'>
+        <div class='row trunk-section'>
+          <div class='col-lg-4'>
+            <h2 class='trunk-title'>Good Connections (Graphite)</h2>
+          </div>
+          <div class='col-lg-8'>
+            <img class="img-responsive graphite" data-lines='[
+                 "stats.input-prod.response.200",
+                 "stats.input-prod.response.201",
+                 "stats.input-prod.response.302"
+                 ]'>
+          </div>
+        </div>
+
+        <div class='row trunk-section'>
+          <div class='col-lg-4'>
+            <h2 class='trunk-title'>Bad Connections (Graphite)</h2>
+          </div>
+          <div class='col-lg-8'>
+            <img class="img-responsive graphite" data-lines='[
+                 "stats.input-prod.response.400",
+                 "stats.input-prod.response.404",
+                 "stats.input-prod.response.429",
+                 "stats.input-prod.response.500",
+                 "stats.input-prod.response.503"
+                 ]'>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
 
-  <!-- Graphs
-  ================================================== -->
-  <div id="graph-app"></div>
-  <legend>
-    <p>h : show help menu</p>
-    <p>r : reload graphs</p>
-    <p>l : toggle graph legends</p>
-  </legend>
-
-  <script type="text/template" id="graph-template">
-    <img class="graph">
-    <form>
-      <fieldset>
-        <div><label>Title: </label><input class="title" value="<%= title %>"></div>
-        <div><label>Data:  </label><textarea class="target"><%= target.join(' | ') %></textarea></div>
-        <div><button class="btn primary">done</button></div>
-      </fieldset>
-    </form>
-  </script>
-
-  <script src="js/libs/jquery.min.js"></script>
-  <script src="js/libs/underscore.js"></script>
-  <script src="js/libs/backbone-min.js"></script>
-  <script src="js/libs/backbone-localstorage.js"></script>
-  <script src="js/app.config.js"></script>
-  <script src="js/app.js"></script>
-
+  <script src="js/jquery-1.11.1.min.js"></script>
+  <script src="js/bootstrap-3.2.0.min.js"></script>
+  <script src="js/metrics-graphics.js"></script>
+  <script src="js/statsdash.config.js"></script>
+  <script src="js/statsdash.js"></script>
 </body>
 </html>
