@@ -48,7 +48,9 @@
         </div>
 
         <div> <!-- server connection counts -->
-          <img class="img-responsive graphite graphite-lg" data-lines='[
+          <img class="img-responsive graphite graphite-lg"
+               data-options='{"areaMode": "stacked"}'
+               data-lines='[
                "hosts.input1_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count",
                "hosts.input2_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count",
                "hosts.input3_webapp_phx1_mozilla_com.apache.apache80.apache_connections.count"

@@ -22,16 +22,19 @@
         var items = $('.graphite');
 
         $.each(items, function(index, value) {
+            var options = {};
             var linesToShow = $(value).data('lines');
+            var optionsOverride = $(value).data('options') || {};
             var lines = '';
             var extra = null;
 
             if ($(value).hasClass('graphite-lg')) {
-                extra = graphiteOptions.lg;
+                $.extend(options, graphiteOptions.lg);
             } else {
-                extra = graphiteOptions.sm;
+                $.extend(options, graphiteOptions.sm);
             }
-            extra = $.param(extra) + '&t=' + (new Date()).getTime();
+            $.extend(options, optionsOverride);
+            extra = $.param(options) + '&t=' + (new Date()).getTime();
 
             $.each(linesToShow, function(index, line) {
                 lines = lines + 'target=' + line + '&';
