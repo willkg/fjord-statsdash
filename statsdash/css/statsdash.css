@@ -5,3 +5,19 @@ body {
   padding: 40px 15px;
   text-align: center;
 }
+.input-api path.line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.input-api text {
+  font-size: 0.7em;
+}
+
+.input-api .axis path,
+.input-api .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
