@@ -156,6 +156,11 @@
                     .attr("dy", -2)
                     .text(function(d) { return d.name; });
 
+                graph = graph.selectAll(".response-graph")
+                    .data(series)
+                    .exit()
+                    .remove();
+
             });
         });
     }
