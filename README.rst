@@ -21,3 +21,12 @@ Want your own dashboard?
 5. Push this static site somewhere you will find it.
 
 6. Navigate to that place with your web-browser.
+
+
+History
+=======
+
+Originally, this was a fork of `statsdash
+<https://github.com/potch/statsdash>`_, but then I rewrote it because
+4 graphs wasn't enough and there was a bunch of other stuff I wanted
+to do.
