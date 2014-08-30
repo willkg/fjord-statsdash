@@ -95,12 +95,23 @@
           <div class="col-lg-4">
             <h2 class="trunk-title">Response breakdowns</h2>
           </div>
-          <div class="col-lg-4">
-            <svg class="input-api" data-options='{"groupby": "happy"}'></svg>
-            <svg class="input-api" data-options='{"groupby": "api"}'></svg>
-          </div>
-          <div class="col-lg-4">
-            <svg class="input-api" data-options='{"groupby": "product", "max": 25}'></svg>
+          <div class="col-lg-8">
+            <div class="row">
+              <div class="col-lg-6 input-api" id="happy-graph"
+                   data-options='{"seriesKey": "happy"}'>
+              </div>
+              <div class="col-lg-6 input-api" id="api-graph"
+                   data-options='{"seriesKey": "api"}'>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 input-api" id="product-graph"
+                   data-options='{"seriesKey": "product", "max": 25}'>
+              </div>
+              <div class="col-lg-6 input-api" id="platform-graph"
+                   data-options='{"seriesKey": "platform", "max": 25}'>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -177,6 +188,7 @@
   <script src="js/bootstrap-3.2.0.min.js"></script>
   <script src="js/d3.v3.min.js"></script>
   <script src="js/metrics-graphics.js"></script>
+  <script src="js/d4e.js"></script>
   <script src="js/statsdash.config.js"></script>
   <script src="js/statsdash.js"></script>
 </body>
