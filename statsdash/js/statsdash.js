@@ -44,41 +44,6 @@
         });
     }
 
-    function refreshInputAPI() {
-        var inputURL = "https://input.mozilla.org/api/v1/feedback/";
-        var inputOptions = {
-            width: 270,
-            height: 200,
-            max: 40,
-            seriesKey: 'product',
-
-            top: 20,
-            right: 70,
-            bottom: 30,
-            left: 40
-        };
-
-        d3.json(inputURL, function(error, data) {
-            // Select the <div>s.
-            var graphs = d3.selectAll('.input-api');
-
-            // Go through them and create the charts.
-            graphs.each(function() {
-                var graph = d3.select(this);
-                var target = '#' + graph.attr('id');
-                var options = {};
-
-                var optionsOverride = JSON.parse(graph.attr('data-options'));
-
-                $.extend(options, inputOptions);
-                $.extend(options, optionsOverride);
-
-
-                d4e.multiline(data, options, target);
-            });
-        });
-    }
-
     var timeoutId = null;
 
     // Set up to refresh only when the tab is active
@@ -87,7 +52,6 @@
             return;
         }
         refreshGraphite();
-        // refreshInputAPI();
 
         // Once a minute--run them again.
         timeoutId = setTimeout(runIntervals, 60000);
@@ -101,6 +65,5 @@
     window.onfocus = function() { runIntervals(); };
 
     refreshGraphite();
-    refreshInputAPI();
 
 }(jQuery, d3, d4e, window));

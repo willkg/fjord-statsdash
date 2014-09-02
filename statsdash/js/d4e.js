@@ -36,6 +36,7 @@ window.d4e = window.d4e || {};
             width: 270,
             height: 200,
             max: null,
+            bin: 15,
             seriesKey: 'product',
 
             top: 20,
@@ -45,8 +46,6 @@ window.d4e = window.d4e || {};
         };
 
         $.extend(opts, options);
-
-        console.log(opts);
 
         var extents = d3.extent(data.results, function(item) {
             return new Date(item.created);
@@ -80,7 +79,7 @@ window.d4e = window.d4e || {};
             .orient("left");
 
         var binify = d3.layout.histogram()
-            .bins(x.ticks(d3.time.minute, 20))
+            .bins(x.ticks(d3.time.minute, opts.bin))
             .value(function (response) {
                 return new Date(response.created);
             });
