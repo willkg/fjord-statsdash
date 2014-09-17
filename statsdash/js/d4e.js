@@ -4,7 +4,57 @@ window.d4e = window.d4e || {};
     'use strict';
 
     /**
-     * Generates a multi-line chart from Input data showing counts/20m
+     * Takes an array of responses and returns a list of objects
+     * one for each value in the seriesKey.
+     *
+     * @arg data: raw data from Input API
+     * @arg seriesKey: String. the key to roll up on. e.g. "product"
+     */
+    d4e.rollup = function(data, seriesKey) {
+        return d3.nest()
+            .key(function(d) {
+                return d[seriesKey];
+            })
+            .entries(data.results);
+    };
+
+    /**
+     * Takes an array of {key, values} objects and bins them into
+     * time bins of size binSize.
+     *
+     * @arg data: results from rollup
+     * @arg binSize: size of bin in minutes
+     * @arg binKey: the date field
+     */
+    d4e.bin = function(data, binSize, binKey) {
+        var max = d3.max(data, function (series) {
+            return d3.max(series.values, function (item) {
+                return new Date(item[binKey]);
+            });
+        });
+
+        var min = d3.min(data, function (series) {
+            return d3.min(series.values, function (item) {
+                return new Date(item[binKey]);
+            });
+        });
+
+        var x = d3.time.scale()
+            .domain([min, max]);
+
+        var binify = d3.layout.histogram()
+            .bins(x.ticks(d3.time.minute, binSize))
+            .value(function (response) {
+                return new Date(response[binKey]);
+            });
+
+        return data.map(function (lineData) {
+            return {'key': lineData.key, 'series': binify(lineData.values)};
+        });
+    };
+
+    /**
+     * Generates a multi-line chart from Input data showing counts/15m
      * intervals.
      *
      * @arg data: results from Input
@@ -14,8 +64,8 @@ window.d4e = window.d4e || {};
      * Example:
      *
      *     Creates a graph with two lines--one for each value of the
-     *     "happy" field. The x values are 20-minute bins. The y
-     *     values are the number of responses in that 20-minute bin
+     *     "happy" field. The x values are 15-minute bins. The y
+     *     values are the number of responses in that 15-minute bin
      *     for that "happy" field value.
      *
      *     var options = {
@@ -28,15 +78,16 @@ window.d4e = window.d4e || {};
      *         left: 40
      *     };
      *     d3.json(inputURL, function(error, data) {
-     *         d4e.multiline(data, options, '#happy-graph');
+     *         d4e.multilineFreq(data, options, '#happy-graph');
      *     });
      */
-    d4e.multiline = function(data, options, target) {
+    d4e.multilineFreq = function(data, options, target) {
         var opts = {
             width: 270,
             height: 200,
             max: null,
-            bin: 15,
+            binSize: 15,  // # minutes
+            binKey: 'created',
             seriesKey: 'product',
 
             top: 20,
@@ -52,15 +103,16 @@ window.d4e = window.d4e || {};
         });
 
         var container = d3.select(target);
+
+        // delete existing graphs
+        container.selectAll('svg').remove();
+
+        // create new graphs
         var graph = container.append('svg')
             .attr('width', opts.width)
             .attr('height', opts.height);
 
-        var graphData = d3.nest()
-            .key(function(d) {
-                return d[opts.seriesKey];
-            })
-            .entries(data.results);
+        var graphData = d4e.rollup(data, opts.seriesKey);
 
         var x = d3.time.scale()
             .domain(extents)
@@ -78,18 +130,14 @@ window.d4e = window.d4e || {};
             .scale(y)
             .orient("left");
 
-        var binify = d3.layout.histogram()
-            .bins(x.ticks(d3.time.minute, opts.bin))
-            .value(function (response) {
-                return new Date(response.created);
-            });
+        graphData = d4e.bin(graphData, opts.binSize, opts.binKey, opts.width);
 
         var labels = graphData.map(function (lineData) {
             return lineData.key;
         });
 
         var series = graphData.map(function (lineData) {
-            return binify(lineData.values);
+            return lineData.series;
         });
 
         var line = d3.svg.line()
@@ -98,7 +146,7 @@ window.d4e = window.d4e || {};
             .y(function(d) { return y(d.y); });
 
         var color = d3.scale.category10()
-            .domain(series.length);
+            .domain(graphData.length);
 
         graph.attr("width", opts.width + opts.left + opts.right)
             .attr("height", opts.height + opts.top + opts.bottom);

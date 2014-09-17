@@ -52,6 +52,7 @@
             return;
         }
         refreshGraphite();
+        d4e.renderGraphs();
 
         // Once a minute--run them again.
         timeoutId = setTimeout(runIntervals, 60000);

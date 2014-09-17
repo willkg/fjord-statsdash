@@ -23,15 +23,25 @@
     'use strict';
 
     var DEFAULTURL = 'https://input.mozilla.org/api/v1/feedback/';
+    var lastRendered = null;
 
-    $().ready(function() {
+    d4e.renderGraphs = function() {
+        // First check to see if we've rendered in the last minute
+        // and if so, wait.
+        var now = new Date();
+        if (lastRendered !== null && (now - lastRendered) < 60000) {
+            console.log(now, lastRendered, 'skipped...');
+            return;
+        }
+        lastRendered = now;
+
         // FIXME: Should there be a global way to override default
         // options? Should we have better defaults?
         var inputOptions = {
             width: 270,
             height: 200,
             max: 40,
-            bin: 15,
+            bin: 15,  // # minutes
             seriesKey: 'product',
 
             top: 20,
@@ -69,10 +79,13 @@
                     $.extend(options, inputOptions);
                     $.extend(options, optionsOverride);
 
-                    d4e.multiline(data, options, target);
+                    d4e.multilineFreq(data, options, target);
                 });
             });
         });
-    });
+    };
 
+    $().ready(function() {
+        d4e.renderGraphs();
+    });
 }(jQuery, d3, d4e));
