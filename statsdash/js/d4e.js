@@ -92,7 +92,7 @@ window.d4e = window.d4e || {};
 
             top: 20,
             right: 70,
-            bottom: 30,
+            bottom: 50,
             left: 40
         };
 
@@ -161,7 +161,13 @@ window.d4e = window.d4e || {};
         graph.append("g")
             .attr("class", "x axis")
             .attr("transform", "translate(0, " + opts.height + ")")
-            .call(xAxis);
+            .call(xAxis)
+            .selectAll("text")
+            .attr("y", 0)
+            .attr("x", 9)
+            .attr("dy", ".35em")
+            .attr("transform", "rotate(90)")
+            .style("text-anchor", "start");
 
         graph.append("g")
             .attr("class", "y axis")

@@ -43,6 +43,7 @@
             max: 40,
             bin: 15,  // # minutes
             seriesKey: 'product',
+            binKey: 'created',
 
             top: 20,
             right: 70,
@@ -73,7 +74,6 @@
                 $.each(targets, function(index, target) {
                     var graph = d3.select(target);
                     var options = {};
-
                     var optionsOverride = JSON.parse(graph.attr('data-options'));
 
                     $.extend(options, inputOptions);
