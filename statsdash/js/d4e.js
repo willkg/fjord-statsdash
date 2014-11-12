@@ -84,15 +84,15 @@ window.d4e = window.d4e || {};
     d4e.multilineFreq = function(data, options, target) {
         var opts = {
             width: 270,
-            height: 200,
+            height: 210,
             max: null,
             binSize: 15,  // # minutes
             binKey: 'created',
             seriesKey: 'product',
 
-            top: 20,
+            top: 10,
             right: 70,
-            bottom: 50,
+            bottom: 40,
             left: 40
         };
 

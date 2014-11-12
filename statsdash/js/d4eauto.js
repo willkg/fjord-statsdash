@@ -39,7 +39,7 @@
         // options? Should we have better defaults?
         var inputOptions = {
             width: 270,
-            height: 200,
+            height: 210,
             max: 40,
             bin: 15,  // # minutes
             seriesKey: 'product',
@@ -47,7 +47,7 @@
 
             top: 20,
             right: 70,
-            bottom: 30,
+            bottom: 50,
             left: 40
         };
 
