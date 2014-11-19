@@ -181,6 +181,26 @@
 
         <div class="row trunk-section">
           <div class="col-lg-4">
+            <h2 class="trunk-title">Heartbeat v2</h2>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-responsive graphite graphite-sm"
+                 data-options='{"yMin": "0", "yMax": "0.5"}'
+                 data-lines='[
+                 "stats.input-prod.heartbeat.success"
+                 ]'>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-responsive graphite graphite-sm"
+                 data-options='{"yMin": "0", "yMax": "0.5"}'
+                 data-lines='[
+                 "stats.input-prod.heartbeat.error"
+                 ]'>
+          </div>
+        </div>
+
+        <div class="row trunk-section">
+          <div class="col-lg-4">
             <h2 class="trunk-title">Gengo balance</h2>
           </div>
           <div class="col-lg-8">
