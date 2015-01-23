@@ -122,6 +122,41 @@
           </div>
         </div>
 
+        <div class="row trunk-section">
+          <div class="col-lg-4">
+            <h2 class="trunk-title">Additional data</h2>
+          </div>
+          <div class="col-lg-8">
+            <img class="img-responsive graphite graphite-lg"
+                 data-options='{"yMin": "0", "yMax": "0.2"}'
+                 data-lines='[
+                 "stats.input-prod.feedback.browserdata.optin",
+                 "stats.input-prod.feedback.emaildata.optin",
+                 "stats.input-prod.feedback.context.optin"
+                 ]'>
+           </div>
+        </div>
+
+        <div class="row trunk-section">
+          <div class="col-lg-4">
+            <h2 class="trunk-title">Heartbeat v2</h2>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-responsive graphite graphite-sm"
+                 data-options='{"yMin": "0", "yMax": "0.5"}'
+                 data-lines='[
+                 "stats.input-prod.heartbeat.success"
+                 ]'>
+          </div>
+          <div class="col-lg-4">
+            <img class="img-responsive graphite graphite-sm"
+                 data-options='{"yMin": "0", "yMax": "0.5"}'
+                 data-lines='[
+                 "stats.input-prod.heartbeat.error"
+                 ]'>
+          </div>
+        </div>
+
         <div class='row trunk-section'>
           <div class='col-lg-4'>
             <h2 class='trunk-title'>Good Connections (Graphite)</h2>
@@ -183,38 +218,6 @@
                  data-options='{"yMin": "0", "yMax": "0.5"}'
                  data-lines='[
                  "stats.input-prod.response.503"
-                 ]'>
-          </div>
-        </div>
-
-        <div class="row trunk-section">
-          <div class="col-lg-4">
-            <h2 class="trunk-title">Remote-troubleshooting</h2>
-          </div>
-          <div class="col-lg-8">
-            <img class="img-responsive graphite graphite-lg"
-                 data-options='{"yMin": "0", "yMax": "0.2"}'
-                 data-lines='[
-                 "stats.input-prod.feedback.browserdata.*"
-                 ]'>
-           </div>
-        </div>
-        <div class="row trunk-section">
-          <div class="col-lg-4">
-            <h2 class="trunk-title">Heartbeat v2</h2>
-          </div>
-          <div class="col-lg-4">
-            <img class="img-responsive graphite graphite-sm"
-                 data-options='{"yMin": "0", "yMax": "0.5"}'
-                 data-lines='[
-                 "stats.input-prod.heartbeat.success"
-                 ]'>
-          </div>
-          <div class="col-lg-4">
-            <img class="img-responsive graphite graphite-sm"
-                 data-options='{"yMin": "0", "yMax": "0.5"}'
-                 data-lines='[
-                 "stats.input-prod.heartbeat.error"
                  ]'>
           </div>
         </div>
