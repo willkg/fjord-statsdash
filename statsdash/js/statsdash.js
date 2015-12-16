@@ -2,7 +2,7 @@
     'use strict';
 
     function refreshGraphite() {
-        var graphiteURL = 'https://graphite-phx1.mozilla.org/render/';
+        var graphiteURL = 'https://graphite-scl3.mozilla.org/render/';
         var graphiteOptions = {
             'lg': {
                 height: '400',

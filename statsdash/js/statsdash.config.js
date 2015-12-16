@@ -2,7 +2,7 @@ $(function() {
     "use strict";
 
     window.AppConfig = {
-        srcBase: 'https://graphite-phx1.mozilla.org/render/?',
+        srcBase: 'https://graphite-scl3.mozilla.org/render/?',
         globalGraphOptions: {
             hideLegend: false,
             from: '-7day'
