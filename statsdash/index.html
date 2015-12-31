@@ -101,20 +101,35 @@
           <div class="col-lg-8">
             <div class="row">
               <div class="col-lg-6 input-api" id="happy-graph"
-                   data-options='{"seriesKey": "happy", "max": 90}'>
+                   data-options='{"seriesKey": "happy", "max": 40}'>
+                Overall happy/sad
               </div>
               <div class="col-lg-6 input-api" id="api-graph"
-                   data-options='{"seriesKey": "api", "max": 90}'>
+                   data-options='{"seriesKey": "api", "max": 40}'>
+                API usage
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6 input-api" id="product-graph"
-                   data-options='{"seriesKey": "product", "max": 90}'>
+                   data-options='{"seriesKey": "product", "max": 40}'>
+                Responses by Product
               </div>
               <div class="col-lg-6 input-api" id="platform-graph"
-                   data-options='{"seriesKey": "platform", "max": 90}'>
+                   data-options='{"seriesKey": "platform", "max": 40}'>
+                Responses by Platform
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-6 input-api" id="fennec-graph"
+                   data-url="https://input.mozilla.org/api/v1/feedback/?products=Firefox for Android"
+                   data-options='{"seriesKey": "happy", "max": 40}'>
+                Fennec happy/sad
+              </div>
+              <div class="col-lg-6 input-api" id="fx-graph"
+                   data-url="https://input.mozilla.org/api/v1/feedback/?products=Firefox"
+                   data-options='{"seriesKey": "happy", "max": 40}'>
+                Firefox happy/sad
+              </div>
           </div>
         </div>
 
